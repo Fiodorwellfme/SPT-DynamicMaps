@@ -106,6 +106,14 @@ namespace DynamicMaps.UI
             public bool allowShowEnemyPlayerMarkersInRaid;
             public bool allowShowBossMarkersInRaid;
             public bool allowShowScavMarkersInRaid;
+            public bool AllowShowPlayerMarker;
+            public bool AllowShowQuestsInRaid;
+            public bool AllowShowWishListItemsInRaid;
+            public bool AllowShowAirdropsInRaid;
+            public bool AllowShowHiddenStashesInRaid;
+            public bool AllowShowKilledCorpsesInRaid;
+            public bool AllowShowBossCorpsesInRaid;
+            
         }
 
 
