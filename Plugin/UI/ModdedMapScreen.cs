@@ -106,13 +106,13 @@ namespace DynamicMaps.UI
             public bool allowShowEnemyPlayerMarkersInRaid;
             public bool allowShowBossMarkersInRaid;
             public bool allowShowScavMarkersInRaid;
-            public bool AllowShowPlayerMarker;
-            public bool AllowShowQuestsInRaid;
-            public bool AllowShowWishListItemsInRaid;
-            public bool AllowShowAirdropsInRaid;
-            public bool AllowShowHiddenStashesInRaid;
-            public bool AllowShowKilledCorpsesInRaid;
-            public bool AllowShowBossCorpsesInRaid;
+            public bool allowShowPlayerMarker;
+            public bool allowShowQuestsInRaid;
+            public bool allowShowWishListItemsInRaid;
+            public bool allowShowAirdropsInRaid;
+            public bool allowShowHiddenStashesInRaid;
+            public bool allowShowKilledCorpsesInRaid;
+            public bool allowShowBossCorpsesInRaid;
             
         }
 
@@ -828,14 +828,14 @@ namespace DynamicMaps.UI
                 _peekComponent.HideMinimapShortcut = Settings.MiniMapShowOrHide.Value;
             }
 
-            AddRemoveMarkerProvider<PlayerMarkerProvider>(Settings.ShowPlayerMarker.Value);
-            AddRemoveMarkerProvider<QuestMarkerProvider>(Settings.ShowQuestsInRaid.Value);
+            AddRemoveMarkerProvider<PlayerMarkerProvider>(_serverConfig.allowShowPlayerMarker && Settings.ShowPlayerMarker.Value);
+            AddRemoveMarkerProvider<QuestMarkerProvider>(_serverConfig.allowShowQuestsInRaid && Settings.ShowQuestsInRaid.Value);
             AddRemoveMarkerProvider<LockedDoorMarkerMutator>(Settings.ShowLockedDoorStatus.Value);
             AddRemoveMarkerProvider<BackpackMarkerProvider>(Settings.ShowDroppedBackpackInRaid.Value);
             AddRemoveMarkerProvider<BTRMarkerProvider>(Settings.ShowBTRInRaid.Value);
-            AddRemoveMarkerProvider<AirdropMarkerProvider>(Settings.ShowAirdropsInRaid.Value);
-            AddRemoveMarkerProvider<LootMarkerProvider>(Settings.ShowWishListItemsInRaid.Value);
-            AddRemoveMarkerProvider<HiddenStashMarkerProvider>(Settings.ShowHiddenStashesInRaid.Value);
+            AddRemoveMarkerProvider<AirdropMarkerProvider>(_serverConfig.allowShowAirdropsInRaid && Settings.ShowAirdropsInRaid.Value);
+            AddRemoveMarkerProvider<LootMarkerProvider>(_serverConfig.allowShowWishListItemsInRaid && Settings.ShowWishListItemsInRaid.Value);
+            AddRemoveMarkerProvider<HiddenStashMarkerProvider>(_serverConfig.allowShowHiddenStashesInRaid && Settings.ShowHiddenStashesInRaid.Value);
             AddRemoveMarkerProvider<TransitMarkerProvider>(Settings.ShowTransitPointsInRaid.Value);
             AddRemoveMarkerProvider<SecretMarkerProvider>(Settings.ShowSecretPointsInRaid.Value);
             
@@ -911,9 +911,9 @@ namespace DynamicMaps.UI
             {
                 var provider = GetMarkerProvider<CorpseMarkerProvider>();
                 provider.ShowFriendlyCorpses = Settings.ShowFriendlyCorpsesInRaid.Value;
-                provider.ShowKilledCorpses = Settings.ShowKilledCorpsesInRaid.Value;
+                provider.ShowKilledCorpses = _serverConfig.allowShowKilledCorpsesInRaid && Settings.ShowKilledCorpsesInRaid.Value;
                 provider.ShowFriendlyKilledCorpses = Settings.ShowFriendlyKilledCorpsesInRaid.Value;
-                provider.ShowBossCorpses = Settings.ShowBossCorpsesInRaid.Value;
+                provider.ShowBossCorpses = _serverConfig.allowShowBossCorpsesInRaid && Settings.ShowBossCorpsesInRaid.Value;
                 provider.ShowOtherCorpses = Settings.ShowOtherCorpsesInRaid.Value;
                 
                 provider.RefreshMarkers();
