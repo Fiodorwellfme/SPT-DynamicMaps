@@ -2,5 +2,12 @@
     "AllowShowFriendlyPlayerMarkersInRaid": true,
     "AllowShowEnemyPlayerMarkersInRaid": true,
     "AllowShowBossMarkersInRaid": true,
-    "AllowShowScavMarkersInRaid": true
+    "AllowShowScavMarkersInRaid": true,
+    "AllowShowPlayerMarker": true,
+    "AllowShowQuestsInRaid": true,
+    "AllowShowWishListItemsInRaid": true,
+    "AllowShowAirdropsInRaid": true,
+    "AllowShowHiddenStashesInRaid": true,
+    "AllowShowKilledCorpsesInRaid": true,
+    "AllowShowBossCorpsesInRaid": true,
 }
